@@ -1,0 +1,400 @@
+title: $:/plugins/cdr/markdown-more/styles
+tags: [[$:/tags/Stylesheet]]
+
+\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline html
+
+\define styleAdmonition(category: "note", color: "note", symbol: "e85d")
+\rules except dash
+.admonition.$category$ {
+  border-left: 3px solid hsl(var(--color-admonition-$color$));
+}
+.admonition.$category$ > .admonition-title {
+  background-color: hsl(var(--color-admonition-$color$-bg));
+  color: hsl(var(--color-admonition-$color$-tx));
+}
+.admonition.$category$ > .admonition-title:before {
+  color: hsl(var(--color-admonition-$color$));
+  content: "\$symbol$";
+}
+details.admonition.$category$ > .admonition-title:after {
+  background-color: hsl(var(--color-admonition-$color$));
+}
+\end
+
+\define styleAdmonitionCompact(category: "note", color: "note")
+\rules except dash
+.admonition.$category$ {
+  background-color: hsl(var(--color-admonition-$color$-bg));
+  border: 1px solid hsl(var(--color-admonition-$color$));
+  color: hsl(var(--color-admonition-$color$-tx));
+}
+.admonition.$category$ a.tc-tiddlylink-external, .admonition.$category$ a.tc-tiddlylink-external:visited,
+.admonition.$category$ a.tc-tiddlylink, .admonition.$category$ a.tc-tiddlylink:visited {
+  color: hsl(var(--color-admonition-$color$-tx));
+  text-decoration-line: underline;
+  text-underline-offset: 2px;
+}
+.admonition.$category$ :not(pre) > code {
+  background-color: hsla(var(--color-admonition-$color$-bg));
+  background-color: rgba(0,0,0,.03);
+  color: hsl(var(--color-admonition-$color$-tx));
+  border: .5px solid hsla(var(--color-admonition-$color$), .5);
+  border-radius: 3px;
+  margin: 0 2px;
+}
+\end
+
+@font-face {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  src: local("Material Icons"),  local("MaterialIcons-Regular"), url(data:font/woff2;base64,d09GMgABAAAAAAWgAA8AAAAAC3wAAAVKAAEEWgAAAAAAAAAAAAAAAAAAAAAAAAAAGhYbEBwaBmAAgUwIBBEICo0MiW4BNgIkAy4LLgAEIAWCegcgG6cIo6KEUQIA/plgE5n6ghXD6FIH3i2DlCyKBSxseTL87nyxmQANgU8vBB9w795da03NsrjwUwRTMcIosbgj3PTqdA41S5nmviYCqbiPTD3MxGDqwJRO1Hiedr5+OUbYjXgAGPh49w/X9K5Vu/t3Q+EKar7gpiYDI35jE5vYloV5ELYgDOE21/85lnqdlEUHfnaisQ3w3/W/TFpRZOHhEc46vUGaZ8O9CYz2HLWDM7C2Fb+XeC0E0gDARIp2GZI5cjZObM8qUxrnvbkWeMTp4aCXDrSxFICTrf4xM7bHIhNwlGf9upofTwTYxpd2+kgSQ4hligqE2t7/kSWKtuTVfPDh4X4U/CjsUdLj509Mnp57Fv5sxwv3Fzkvyl+0vpjwYvqL6x/7fzzRgno7bmEb+WdUtN5ndcLqmNVeS8rio3mQ2SmzYpObJttN1posMJlkMsYkaKBu9gwaxtTCCANAbcPCKhi7BhyAPko8Jxuwx4aYRJmjivhlPBIDUIdJGIY6VEz2CxPivWKxfHhQzIY7HB+paJ68qXBVp/ZRA3muNxadZJ4jHI1q+EQCiQTi8f7fb8HcgmkQuRbiDO098udykZAFJUpalaV+DCEADOFNTz36xMQutf82dTvpUxMyCBp9Ir80C/o1+7EdYVjwtnA0Q2Ygt7JrKD2ykHeH9O+HZuBGduvXduUWZu+3crNxO7X/VLokVEGKopZ/GTRjgn3kHBmb/XFUl4Q//RSEe1HgUsxna3EU63oPcmHUt1dv7N81TNO3ra4tcT+LJq5OqLcGagK2hGBON4snblYi5BbiJUR7ccV+uVautv1ZvVhJrrQuClWOMuwjC7zL5tNCDG53WSBBD4HdhGLB430ZCAFKIIyQfRvRtohcA4ZpMoOJY0JgKBJkRJemUeBiiEk49BnmbXoX5ENByFoTETAM9KZQEf80Op0PMFQwyNAigkQZ+IqTh8AxRTfDBMT+c9Y/dGJw7PXvhJrI34g18sMKKsC1znXUhg1wHEHCIhMlrW1u5sLZRyAwt7W01XlBjdMbkKPFQayAb/Y1IsD1obLSrje9146hGYtSj1ILhq6Q4EbUcPSTTP5Y4BQq8QZG+l8eBE8D3cRSZjA2/Z25xYWlkjSLSLgDTjNU7owT66iNrtWB27u7aSwoZAwwZUMmjJ+cOAQUnEzWu2JFbKyalgkmCpCbBk7GX8DHNI3zklAZSFREKUIVSsVkLmlCwSHBYawl6bvkzjIKv+P3QsD/RBGxCBlUbkB7K54RIcRIz8qe+PVbebOyX4XEyXoE3p2h34t6ofrtI+tHb9VC9hbI1jx8pP7f1tZLEDTQ1XIwP4I/GPkLhPjdiwsn2/ZF28mmMxExpKLJrxgGEiT0RhbZkN43EXEMMpsIQ1h9C+VGVCGIAquMeRf0IXGBt7N/y3mVwFLOByKRhomkLAG+3BI4GR7PJfkiBKQrVUQllrDIgqJSTuQsbp8riYlVX8zIeNsuzIqJcaIgnl9AK3gK3XvMG+j34+kbgM/qFZ4A8B1mCf//9Q94AnFeGUB0BQPUQcRYBQqMVEl05zIhjXQQSghCjVg0ArawStBUDVAdFKaProKm9MhhbExAi1bCl16BQdryDZZ1M4RcTF4drjNENN37LFFL34SqU69DowplyjWjuHDizAslUp06ZaqVsEOJVquIA0qwatUoKWujTREssUGXG7UyFld3xCvQHK1WKFjVN1qROrXkpXKZloyuQKOIaLMNWC1Tsht0YCHFZ7FPC1QNdWfPlX0PVW/MCmxibyVA1PmJdZ150mxaz35nWS3C2X8MFwAA);
+}
+
+/*** Admonition ***/
+
+:root {
+  /* HSL color tuples */
+  --color-admonition-note: 202, 100%, 49%;
+  --color-admonition-important: 330, 75%, 61%;
+  --color-admonition-success: 95, 70%, 47%;
+  --color-admonition-warning: 34, 100%, 50%;
+  --color-admonition-danger: 6, 86%, 57%;
+  --color-admonition-example: 265, 100%, 67%;
+  --color-admonition-quote: 0, 0%, 56%;
+  --color-admonition-see-also: 134, 55%, 47%;
+}
+
+<$reveal stateTitle={{$:/palette}} stateField="color-scheme" type="nomatch" text="dark">
+:root {
+  --color-admonition-note-bg: 202, 100%, 93%;
+  --color-admonition-important-bg: 330, 75%, 95%;
+  --color-admonition-success-bg: 95, 71%, 90%;
+  --color-admonition-warning-bg: 34, 100%, 92%;
+  --color-admonition-danger-bg: 6, 86%, 95%;
+  --color-admonition-example-bg: 265, 100%, 96%;
+  --color-admonition-quote-bg: 0, 0%, 93%;
+  --color-admonition-see-also-bg: 134, 55%, 93%;
+
+  --color-admonition-note-tx: 202, 100%, 20%;
+  --color-admonition-important-tx: 330, 75%, 31%;
+  --color-admonition-success-tx: 95, 70%, 19%;
+  --color-admonition-warning-tx: 34, 100%, 21%;
+  --color-admonition-danger-tx: 6, 86%, 30%;
+  --color-admonition-example-tx: 265, 100%, 40.5%;
+  --color-admonition-quote-tx: 0, 0%, 25.5%;
+  --color-admonition-see-also-tx: 134, 55%, 21%;
+}
+.admonition {
+  background-color: rgba(255,255,255,0.05);
+}
+</$reveal>
+
+<$reveal stateTitle={{$:/palette}} stateField="color-scheme" type="match" text="dark">
+:root {
+  --color-admonition-note-bg: 202, 100%, 15%;
+  --color-admonition-important-bg: 330, 75%, 17%;
+  --color-admonition-success-bg: 95, 70%, 14%;
+  --color-admonition-warning-bg: 34, 100%, 16%;
+  --color-admonition-danger-bg: 6, 86%, 16%;
+  --color-admonition-example-bg: 265, 100%, 17%;
+  --color-admonition-quote-bg: 0, 0%, 19.5%;
+  --color-admonition-see-also-bg: 134, 55%, 14%;
+
+  --color-admonition-note-tx: 202, 100%, 61%;
+  --color-admonition-important-tx: 330, 75%, 68%;
+  --color-admonition-success-tx: 95, 70%, 44%;
+  --color-admonition-warning-tx: 34, 100%, 52%;
+  --color-admonition-danger-tx: 6, 86%, 68%;
+  --color-admonition-example-tx: 265, 100%, 76%;
+  --color-admonition-quote-tx: 0, 0%, 67%;
+  --color-admonition-see-also-tx: 134, 55%, 46%;
+}
+.admonition {
+  background-color: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.07);
+}
+@media print {
+  .admonition {
+    border: 1px solid <<colour pre-border>>;
+  }
+}
+</$reveal>
+
+<$reveal stateTitle={{$:/palette}} stateField="color-scheme" type="nomatch" text="dark">
+@media print {
+  .admonition {
+    border: 1px solid <<colour pre-border>>;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+  .admonition > .admonition-title {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+}
+@media screen {
+  .admonition {
+    box-shadow: 0 3px 8px rgba(0,0,0,.05), 0 0 1px rgba(0,0,0,.1);
+  }
+}
+</$reveal>
+
+.admonition {
+  margin: 1.5em 0;
+  padding: 0px;
+  overflow:auto;
+  page-break-inside:avoid;
+  border-radius: 3px;
+  border-left: 3px solid hsl(var(--color-admonition-note));
+}
+.admonition >.admonition-title {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 7px 8px;
+  background-color: hsl(var(--color-admonition-note));
+  font-weight: 600;
+  font-size: .92em;
+  line-height: 1;
+}
+.admonition >.admonition-title:before {
+  margin-right: .4em;
+  font-size: 1.25em;
+  color: rgba(68, 138, 255, .8);
+  content: "\e88e";
+}
+.admonition >.admonition-title:before {
+  font-family: Material Icons;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 400;
+  text-transform: none;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+}
+details.admonition > .admonition-title:after {
+  content: "";
+  background-color: hsl(var(--color-admonition-note));
+  margin-left: auto;
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='48' width='48'%3E%3Cpath d='m18.75 36-2.15-2.15 9.9-9.9-9.9-9.9 2.15-2.15L30.8 23.95Z'/%3E%3C/svg%3E");
+  mask-position: center;
+  mask-repeat: no-repeat;
+  mask-size: contain;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='48' width='48'%3E%3Cpath d='m18.75 36-2.15-2.15 9.9-9.9-9.9-9.9 2.15-2.15L30.8 23.95Z'/%3E%3C/svg%3E");
+  -webkit-mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  transform: rotate(0deg);
+  transition: transform .25s;
+  height: 1.5em;
+  width: 1.5em;
+}
+details[open].admonition > .admonition-title:after {
+  transform: rotate(90deg);
+}
+.admonition > .admonition-body {
+  font-size: .98em;
+  margin: 8px 10px;
+}
+.admonition p {
+  line-height: 1.35;
+}
+
+<<styleAdmonition note note e85d>>
+
+<<styleAdmonition info note e88e>>
+
+<<styleAdmonition todo note e834>>
+
+<<styleAdmonition see-also see-also e250>>
+
+<<styleAdmonition important important e645>>
+
+<<styleAdmonition success success e876>>
+
+<<styleAdmonition tip success e0f0>>
+
+<<styleAdmonition question success e887>>
+
+<<styleAdmonition warning warning e002>>
+
+<<styleAdmonition caution warning e002>>
+
+<<styleAdmonition danger danger e3e7>>
+
+<<styleAdmonition fail danger e14c>>
+
+<<styleAdmonition error danger e5c9>>
+
+<<styleAdmonition bug danger e868>>
+
+<<styleAdmonition example example f1c3>>
+
+<<styleAdmonition snippet example f1c3>>
+
+<<styleAdmonition summary example e241>>
+
+<<styleAdmonition abstract example e8d2>>
+
+<<styleAdmonition quote quote e244>>
+
+<<styleAdmonition cite quote e244>>
+
+<$reveal stateTitle="$:/config/markdown/admonition/style" type="match" text="pastel" default="classic">
+.admonition > .admonition-title {
+  background-color: rgba(0,0,0,0) !important;
+  padding-top: .5em;
+  padding-bottom: 0px;
+  margin-bottom: .5em;
+  font-size: .9em;
+  border: none;
+}
+.admonition > .admonition-body {
+  font-size: .96em;
+}
+
+<<styleAdmonitionCompact "note" "note">>
+
+<<styleAdmonitionCompact info note>>
+
+<<styleAdmonitionCompact todo note>>
+
+<<styleAdmonitionCompact see-also see-also>>
+
+<<styleAdmonitionCompact important important>>
+
+<<styleAdmonitionCompact success success>>
+
+<<styleAdmonitionCompact tip success>>
+
+<<styleAdmonitionCompact question success>>
+
+<<styleAdmonitionCompact warning warning>>
+
+<<styleAdmonitionCompact caution warning>>
+
+<<styleAdmonitionCompact danger danger>>
+
+<<styleAdmonitionCompact fail danger>>
+
+<<styleAdmonitionCompact error danger>>
+
+<<styleAdmonitionCompact bug danger>>
+
+<<styleAdmonitionCompact example example>>
+
+<<styleAdmonitionCompact snippet example>>
+
+<<styleAdmonitionCompact summary example>>
+
+<<styleAdmonitionCompact abstract example>>
+
+<<styleAdmonitionCompact quote quote>>
+
+<<styleAdmonitionCompact cite quote>>
+</$reveal>
+
+/*** Checklist ***/
+
+.markdown .checklist-item {
+  list-style-type: none;
+}
+.markdown .checklist-item-checkbox {
+  margin: 0 .3em .25em -1.2em;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+/*** TOC ***/
+
+h1 img, h2 img, h3 img, h4 img, h5 img, h6 img, .toc-item img {
+  width: 1.2em;
+  height: 1.2em;
+}
+div.md-container {
+  width: 100%;
+  display: block
+}
+div.md-aside {
+  font-size: 0.9em;
+}
+
+/* LANDSCAPE */
+@media (min-width: {{$:/themes/tiddlywiki/vanilla/metrics/sidebarbreakpoint}}) {
+  div.md-container {
+    display: flex;
+    flex-flow: row no-wrap;
+  }
+  div.md-main {
+    flex-grow: 1;
+    flex-basis: 0;
+    flex-shrink: 1;
+    width: 78%;
+    order: 1;
+  }
+  div.md-aside {
+    flex-grow: 0;
+    flex-shrink: 1;
+    width: 22%;
+    order: 2;
+  }
+  .md-aside nav {
+    position: sticky;
+    top: {{{ [{$:/themes/tiddlywiki/vanilla/options/stickytitles}match[yes]then[110px]else[60px]] }}};
+    max-height: calc(100vh - {{{ [{$:/themes/tiddlywiki/vanilla/options/stickytitles}match[yes]then[110px]else[60px]] }}});
+    overflow-y: auto;
+    margin-left: 1em;
+  }
+}
+
+<$reveal stateTitle="$:/config/markdown/toc/portrait" type="match" text="hide">
+@media (max-width: {{$:/themes/tiddlywiki/vanilla/metrics/sidebarbreakpoint}}) {
+    .md-aside {
+    display: none;
+  }
+}
+</$reveal>
+
+/* PRINT */
+@media print {
+  div.md-aside {
+    display: none;
+  }
+}
+
+/* TOC list style */
+.md-aside nav ol.tc-toc {
+  list-style-type: none;
+  padding-left: 1.25em;
+}
+.md-aside nav > ol.tc-toc {
+  padding-left: 0px;
+}
+.md-aside nav > ol > li:first-child {
+  margin-top: 0;
+}
+.md-aside .toc-item {
+  line-height: 1.2;
+  margin-bottom: .75em;
+  margin-top: .75em;
+}
+<$reveal stateTitle="$:/config/markdown/toc/depth" type="match" text="2">
+.md-aside .toc-level3 {
+  display: none;
+}
+</$reveal>
+<$reveal stateTitle="$:/config/markdown/toc/depth" type="match" text="1">
+.md-aside .toc-level2 {
+  display: none;
+}
+</$reveal>
+.markdown .anchor-item:target {
+  animation: highlight 2s ease;
+	scroll-margin-top: {{{ [{$:/themes/tiddlywiki/vanilla/options/stickytitles}match[yes]then[120px]else[60px]] }}};
+}
+@keyframes highlight {
+  from { background: <<colour message-background>>; }
+  to { background: transparent; }
+}

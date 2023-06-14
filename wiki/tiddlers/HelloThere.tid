@@ -1,0 +1,89 @@
+created: 20220119021412186
+modified: 20220119023941669
+tags: 
+title: HelloThere
+type: text/markdown
+
+This is a demo of the [MarkdownMore](#$:/plugins/cdr/markdown-more) plugin.
+
+# Checklist
+
+Create an interactive checklist:
+
+```
+- [ ] item one
+  - [ ] nested item
+- [x] item two
+```
+
+Example:
+
+- [ ] task 1
+  - [ ] task 1a
+  - [x] task 1b
+- [ ] task 2
+
+# Admonition
+
+The admonition extension allows you to create stylized containers. There are two styles to choose from: &nbsp;<$select tiddler="$:/config/markdown/admonition/style" default='classic'><$list filter='[[classic]] [[pastel]]'><option value=<<currentTiddler>>><$view field='title'/></option></$list></$select>
+
+## Basic Syntax
+
+```
+:::category [optional title]
+markdown text
+:::
+```
+
+Example:
+
+:::note
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et euismod nulla. Curabitur feugiat, tortor non consequat finibus, justo purus auctor massa, nec semper lorem quam in massa.
+:::
+
+## Collapsible Containers
+
+You can create collapsible containers by appending `+` or `-` after the category name.
+
+```
+:::tip-
+This is a collapsible container.
+:::
+```
+
+:::tip-
+This is a collapsible container.
+:::
+
+## Nested Admonitions
+
+Admonitions can be nested by increasing the number of `:` characters to delimit the outer containers.
+
+```
+::::info
+
+Outer container
+
+:::example
+Inner container
+:::
+::::
+```
+
+::::info
+
+Outer container
+
+:::example
+Inner container
+:::
+::::
+
+
+# Table of Contents
+
+This plugin automatically generates tiddler-level table of contents based on Markdown headings. This feature can be turned off.
+
+# Installation
+
+This plugin requires <$text text="TiddlyWiki"/> version 5.2.6 or greater. Install the official Markdown plugin first. Then, drag and drop this link [$:/plugins/cdr/markdown-more](#$:/plugins/cdr/markdown-more) into your wiki.

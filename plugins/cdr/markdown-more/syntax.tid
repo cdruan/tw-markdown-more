@@ -1,0 +1,74 @@
+title: $:/plugins/cdr/markdown-more/syntax
+
+!! Checklist
+
+```markdown
+- [ ] Task 1
+- [x] Task 2
+```
+
+This plugin provides simple interactive checklists. Clicking on the checkboxes will alter the underlying Markdown text. To minimize unintended changes, transcluded checklists will be read-only. Care must also be taken when mixing <$text text="WikiText"/> and the markdown text. For example, if you enter the following:
+
+```
+<$list filter="apple bat candle" variable="item">
+
+- [ ] <<item>>
+
+</$list>
+```
+
+All of the rendered checkboxes in the above example will be linked to one toggle state. Clicking on any one of them will cause all of boxes to be updated.
+
+!! Admonitions
+
+Create special content blocks with the admonition syntax:
+
+```markdown
+::::note Optional title can be specified after the category name
+Information the user should notice.
+
+:::summary
+Admonition blocks can be nested.
+:::
+
+::::
+```
+
+You can create collapsible containers by appending `+` (to initially expand) or `-` after the category name.
+
+```
+:::note+
+Collapsible content
+:::
+```
+
+Available categories are:
+
+* note, info, todo
+* important
+* tip, success, question
+* warning, caution
+* fail, danger, error, bug
+* example, snippet, abstract, summary
+* quote, cite
+* see-also
+
+<div class="markdown">
+<div class="admonition note"><div class="admonition-title">NOTE</div></div>
+<div class="admonition info"><div class="admonition-title">INFO</div></div>
+<div class="admonition todo"><div class="admonition-title">TODO</div></div>
+<div class="admonition important"><div class="admonition-title">IMPORTANT</div></div>
+<div class="admonition tip"><div class="admonition-title">TIP</div></div>
+<div class="admonition success"><div class="admonition-title">SUCCESS</div></div>
+<div class="admonition question"><div class="admonition-title">QUESTION</div></div>
+<div class="admonition warning"><div class="admonition-title">WARNING / CAUTION</div></div>
+<div class="admonition fail"><div class="admonition-title">FAIL</div></div>
+<div class="admonition danger"><div class="admonition-title">DANGER</div></div>
+<div class="admonition error"><div class="admonition-title">ERROR</div></div>
+<div class="admonition bug"><div class="admonition-title">BUG</div></div>
+<div class="admonition example"><div class="admonition-title">EXAMPLE / SNIPPET</div></div>
+<div class="admonition abstract"><div class="admonition-title">ABSTRACT</div></div>
+<div class="admonition summary"><div class="admonition-title">SUMMARY</div></div>
+<div class="admonition quote"><div class="admonition-title">QUOTE / CITE</div></div>
+<div class="admonition see-also"><div class="admonition-title">SEE ALSO</div></div>
+</div>

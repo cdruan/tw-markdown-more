@@ -1,0 +1,35 @@
+title: $:/plugins/cdr/markdown-more/readme
+
+This is an extension to the official Markdown plugin (&ge; 5.2.6), featuring:
+
+* checklist
+* admonition
+* tiddler-level table of contents based on Markdown headings
+
+!! Settings
+
+!!! Admonition Style
+
+<$select tiddler="$:/config/markdown/admonition/style" default='classic'><$list filter='[[classic]] [[pastel]]'><option value=<<currentTiddler>>><$view field='title'/></option></$list></$select>
+
+<div class="markdown">
+<div class="admonition note" style="margin-top: 1.2em">
+<div class="admonition-title">NOTE</div>
+<div class="admonition-body">This is an example of an admonition box.</div>
+</div>
+</div>
+
+!!! Table of Contents
+
+<$checkbox tiddler="$:/config/markdown/toc/enable" field="text" checked="yes" unchecked="no" default="yes">
+&#32; generate table of contents &mdash; //page reload required for changes to take effect//
+</$checkbox>
+
+<$reveal stateTitle="$:/config/markdown/toc/enable" type="match" text="yes" default="yes">
+
+<$checkbox tiddler="$:/config/markdown/toc/portrait" field="text" checked="hide" unchecked="show" default="hide">
+&#32; hide table of contents in portrait/mobile view
+</$checkbox>
+
+number of levels:&nbsp;&nbsp;<$select tiddler="$:/config/markdown/toc/depth" default='2'><$list filter='1 2 3'><option value=<<currentTiddler>>><$view field='title'/></option></$list></$select>
+</$reveal>

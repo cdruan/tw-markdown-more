@@ -1,0 +1,6 @@
+title: $:/config/markdown/
+
+admonition/style: classic
+toc/portrait: hide
+toc/depth: 2
+toc/enable: yes
