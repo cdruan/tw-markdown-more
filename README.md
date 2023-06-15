@@ -1,6 +1,6 @@
 # MarkdownMore
 
-This is a companion to TiddlyWiki's official Markdown plugin (&ge; 5.2.6). It features the following Markdown extensions:
+This is a companion to the official TiddlyWiki Markdown plugin (&ge; 5.2.6). It features the following Markdown extensions:
 
 * checklist
 * admonition
