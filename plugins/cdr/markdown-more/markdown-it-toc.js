@@ -93,6 +93,8 @@ module.exports = function tocPlugin(md,options) {
 	// insert 'toc' token automatically and enclose markdown
 	// text into a <div> container
 	md.core.ruler.before('block','prologue',function(state) {
+		if(state.inlineMode) { return; }
+
 		var token;
 		token = new state.Token('html_block','',0);
 		token.content = '<div class="md-container">\n';
@@ -110,7 +112,9 @@ module.exports = function tocPlugin(md,options) {
 	// close off main <div> container and starts scanning
 	// for toc content
 	md.core.ruler.push('epilogue', function(state) {
-		var token = new state.Token('html_block','',0);
+		if(state.inlineMode) { return; }
+
+		var token = new state.Token('html_block','',0);		
 		token.content = '</div>\n</div>\n';
 		state.tokens.push(token);
 
