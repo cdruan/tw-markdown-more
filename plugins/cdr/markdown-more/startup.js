@@ -23,8 +23,7 @@ exports.startup = function() {
 	var md = MarkdownParser.prototype.md;
 	md.use(require("$:/plugins/cdr/markdown-more/markdown-it-checklist.js"))
 	  .use(require("$:/plugins/cdr/markdown-more/markdown-it-admonition"))
-	  //.use(require("$:/plugins/cdr/markdown-more/markdown-it-toc-done-right"), {placeholder: "\\${toc}"})
-	  //.use(require("$:/plugins/cdr/markdown-more/markdown-it-table-of-contents"))
+	  .use(require("$:/plugins/cdr/markdown-more/markdown-it-example"))
 	  ;
 
 	if($tw.wiki.getTiddlerText("$:/config/markdown/toc/enable","no").trim().toLowerCase() === "yes") {
