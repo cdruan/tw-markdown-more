@@ -25,9 +25,5 @@ exports.startup = function() {
 	  .use(require("$:/plugins/cdr/markdown-more/markdown-it-admonition"))
 	  .use(require("$:/plugins/cdr/markdown-more/markdown-it-example"))
 	  ;
-
-	if($tw.wiki.getTiddlerText("$:/config/markdown/toc/enable","no").trim().toLowerCase() === "yes") {
-	  md.use(require("$:/plugins/cdr/markdown-more/markdown-it-toc"));
-	}
 }
 })();

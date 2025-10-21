@@ -365,14 +365,14 @@ div.md-aside {
 }
 
 /* TOC list style */
-.md-aside nav ol.tc-toc {
+.md-aside nav .toc-list {
 	list-style-type: none;
 	padding-left: 1.25em;
 }
-.md-aside nav > ol.tc-toc {
+.md-aside nav > .toc-list {
 	padding-left: 0px;
 }
-.md-aside nav > ol > li:first-child {
+.md-aside nav > .toc-list > li:first-child {
 	margin-top: 0;
 }
 .md-aside .toc-item {
@@ -380,16 +380,6 @@ div.md-aside {
 	margin-bottom: .75em;
 	margin-top: .75em;
 }
-<$reveal stateTitle="$:/config/markdown/toc/depth" type="match" text="2">
-.md-aside .toc-level3 {
-	display: none;
-}
-</$reveal>
-<$reveal stateTitle="$:/config/markdown/toc/depth" type="match" text="1">
-.md-aside .toc-level2 {
-	display: none;
-}
-</$reveal>
 .markdown .anchor-item:target {
 	animation: highlight 2s ease;
 	scroll-margin-top: {{{ [{$:/themes/tiddlywiki/vanilla/options/stickytitles}match[yes]then[120px]else[60px]] }}};

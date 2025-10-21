@@ -1,0 +1,12 @@
+title: $:/plugins/cdr/markdown-more/view-template/markdown
+code-body: yes
+
+<$toc depth={{$:/config/markdown/toc/depth}} enable={{$:/config/markdown/toc/enable}}>
+
+<$transclude>
+
+<$transclude tiddler="$:/language/MissingTiddler/Hint"/>
+
+</$transclude>
+
+</$toc>
