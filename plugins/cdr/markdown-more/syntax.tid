@@ -19,6 +19,28 @@ This plugin provides simple interactive checklists. Clicking on the checkboxes w
 
 All of the rendered checkboxes in the above example will be linked to one toggle state. Clicking on any one of them will cause all of boxes to be updated.
 
+!! Example Block
+
+Begin an example block with `->` followed by a space. You can provide an additional comment section; anything
+following the `//` symbol will be treated as comments.
+
+```
+Here is an example:
+
+-> Bon Appétit!  // Enjoy your meal!
+```
+
+Rendered output:
+
+<div class="markdown" style="border: 1px solid gray;border-radius:5px;padding:2px 5px;">
+<p>Here is an example:
+</p>
+<div class="md-example-container">
+<span class="md-example-text">Bon Appétit!</span>
+<span class="md-example-comment">Enjoy your meal!</span>
+</div>
+</div>
+
 !! Admonitions
 
 Create special content blocks with the admonition syntax:
@@ -72,3 +94,5 @@ Available categories are:
 <div class="admonition quote"><div class="admonition-title">QUOTE / CITE</div></div>
 <div class="admonition see-also"><div class="admonition-title">SEE ALSO</div></div>
 </div>
+
+

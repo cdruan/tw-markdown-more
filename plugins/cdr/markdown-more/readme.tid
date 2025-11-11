@@ -3,8 +3,9 @@ title: $:/plugins/cdr/markdown-more/readme
 This is an extension to the official Markdown plugin (&ge; 5.2.6), featuring:
 
 * checklist
+* example block, an indented block suitable for presenting examples
 * admonition
-* tiddler-level table of contents based on Markdown headings
+* table of contents, generated from headings in the tiddler
 
 !! Settings
 
@@ -22,7 +23,7 @@ This is an extension to the official Markdown plugin (&ge; 5.2.6), featuring:
 !!! Table of Contents
 
 <$checkbox tiddler="$:/config/markdown/toc/enable" field="text" checked="yes" unchecked="no" default="yes">
-&#32; generate table of contents &mdash; //page reload required for changes to take effect//
+&#32; generate table of contents
 </$checkbox>
 
 <$reveal stateTitle="$:/config/markdown/toc/enable" type="match" text="yes" default="yes">

@@ -3,8 +3,8 @@
 	"name": "MarkdownMore",
 	"description": "Extends the official Markdown plugin",
 	"parent-plugin": "$:/plugins/tiddlywiki/markdown",
-	"core-version": ">=5.2.6",
-	"version": "0.1.0",
+	"core-version": ">=5.3.0",
+	"version": "0.2.0",
 	"author": "cdruan",
 	"list": "readme syntax"
 }
