@@ -363,7 +363,12 @@ div.md-aside {
 		display: none;
 	}
 }
-
+.md-aside {
+	scrollbar-width: none;
+}
+.md-aside ::-webkit-scrollbar {
+	display: none;  /* Safari and Chrome */
+}
 /* TOC list style */
 .md-aside nav .toc-list {
 	list-style-type: none;
