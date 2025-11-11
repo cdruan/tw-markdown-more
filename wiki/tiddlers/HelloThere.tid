@@ -1,6 +1,6 @@
 created: 20220119021412186
-modified: 20220119023941669
-tags: 
+modified: 20251111023941669
+tags:
 title: HelloThere
 type: text/markdown
 
@@ -22,6 +22,22 @@ Example:
   - [ ] task 1a
   - [x] task 1b
 - [ ] task 2
+
+# Example Block
+
+Provide examples and optional comments:
+
+```
+-> Bonjour // Good morning
+-> Merci  // Thank you
+-> S'il vous plaît  // Please
+```
+
+Output:
+
+-> Bonjour // Good morning
+-> Merci  // Thank you
+-> S'il vous plaît  // Please
 
 # Admonition
 

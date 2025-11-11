@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "TiddlyWiki plugin for externalizing TW core and plugins",
   "dependencies": {
-    "tiddlywiki": ">=5.2.6"
+    "tiddlywiki": ">=5.3.8"
   },
   "scripts": {
     "build": "TIDDLYWIKI_PLUGIN_PATH=plugins node ./node_modules/tiddlywiki/tiddlywiki.js wiki --build index",
