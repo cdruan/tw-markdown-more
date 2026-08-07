@@ -388,7 +388,7 @@ div.md-aside {
 	margin-bottom: .75em;
 	margin-top: .75em;
 }
-.markdown .anchor-item:target {
+.anchor-item:target {
 	animation: highlight 2s ease;
 	scroll-margin-top: {{{ [{$:/themes/tiddlywiki/vanilla/options/stickytitles}match[yes]then[120px]else[60px]] }}};
 }
