@@ -35,7 +35,7 @@ TocWidget.prototype.render = function(parent,nextSibling) {
 		qualifier = this.getStateQualifier(),
 		bodyNode = this.document.createElement("div");
 
-	this.renderChildren(bodyNode,nextSibling);
+	this.renderChildren(bodyNode,null);
 
 	if(this.enableTOC) {
 		toc = scanTOC(bodyNode,this.depth,qualifier);
@@ -91,7 +91,7 @@ TocWidget.prototype.refresh = function(changedTiddlers) {
 
 function scanTOC(startNode,maxDepth,qualifier) {
 	var layout = [], // list of H<n> objects,
-		state = { id: 0, curLevel: 0, curDepth: 0 },
+		state = { id: 0, curLevel: 0 },
 		stack = [startNode], node;
 
 	// pre-order traversal of DOM tree
@@ -129,29 +129,19 @@ function isHeading(tag) {
 	return n >= 1 && n <= 6;
 }
 
-// maxDepth is how many nested levels to display. If h2 is the first heading in the body,
-// then it will be considered at depth 1.
+// maxDepth is the maximum heading level to display.
 // level corresponds to h<n>.
 function processHnNode(node,layout,state,maxDepth,qualifier) {
 	var level = parseInt(node.tagName[1]);
 
-	if(level > state.curLevel) {
-		if(state.curDepth >= maxDepth) { return; }
+	if(level > maxDepth) { return; }
 
-		// allow first level TOC to be H2, H3, etc.
-		if(state.curLevel == 0) {
-			state.curLevel = level - 1;
-		} else if(state.curDepth + level - state.curLevel > maxDepth) {
-			return;
-		}
-	}
 	var anchor = "#topic" + state.id++ + "-" + qualifier,
 		heading = { level: level, text: node.textContent, anchor: anchor };
 
 	$tw.utils.addClass(node,"anchor-item");
 	node.setAttribute("id",anchor);
 
-	state.curDepth += level - state.curLevel;
 	state.curLevel = level;
 	layout.push(heading);
 }
@@ -159,6 +149,12 @@ function processHnNode(node,layout,state,maxDepth,qualifier) {
 function renderTOC(navNode,toc) {
 	if(!toc || toc.length <= 0) {
 		return;
+	}
+	var minTocLevel = Infinity;
+	for(let i=0; i< toc.length; i++) {
+		if(toc[i].level < minTocLevel) {
+			minTocLevel = toc[i].level;
+		}
 	}
 
 	var stack = [ {domNode: navNode, level: 0} ], node;
@@ -177,7 +173,9 @@ function renderTOC(navNode,toc) {
 		while(entry.level > prevLevel) {
 			if(prevLevel == 0){
 				// allow initial top level heading to be any h<n>
-				prevLevel = entry.level;
+				//prevLevel = entry.level;
+				prevLevel = minTocLevel;
+				//prevLevel += 1;
 			} else {
 				prevLevel+=1;
 			}
