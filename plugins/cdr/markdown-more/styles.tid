@@ -325,7 +325,7 @@ div.md-aside {
 @media (min-width: {{$:/themes/tiddlywiki/vanilla/metrics/sidebarbreakpoint}}) {
 	div.md-container {
 		display: flex;
-		flex-flow: row no-wrap;
+		flex-flow: row nowrap;
 	}
 	div.md-main {
 		flex-grow: 1;
@@ -347,11 +347,14 @@ div.md-aside {
 		overflow-y: auto;
 		margin-left: 1em;
 	}
+	.tc-tiddler-preview .md-aside nav {
+		top: 10px;
+	}
 }
 
 <$reveal stateTitle="$:/config/markdown/toc/portrait" type="match" text="hide">
 @media (max-width: {{$:/themes/tiddlywiki/vanilla/metrics/sidebarbreakpoint}}) {
-		.md-aside {
+	.md-aside {
 		display: none;
 	}
 }
