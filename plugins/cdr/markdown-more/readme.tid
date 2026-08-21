@@ -1,11 +1,12 @@
 title: $:/plugins/cdr/markdown-more/readme
 
-This is an extension to the official Markdown plugin (&ge; 5.2.6), featuring:
+This extension adds the following features to TiddlyWiki's Markdown plugin:
 
 * checklist
-* example block, an indented block suitable for presenting examples
 * admonition
-* table of contents, generated from headings in the tiddler
+* <$text text="WikiText"/> table syntax
+* example block &mdash; an indented block for example sentences, etc.
+* tiddler level table of contents
 
 !! Settings
 
@@ -23,7 +24,7 @@ This is an extension to the official Markdown plugin (&ge; 5.2.6), featuring:
 !!! Table of Contents
 
 <$checkbox tiddler="$:/config/markdown/toc/enable" field="text" checked="yes" unchecked="no" default="yes">
-&#32; generate table of contents
+&#32; generate a table of contents in each tiddler that contains headings
 </$checkbox>
 
 <$reveal stateTitle="$:/config/markdown/toc/enable" type="match" text="yes" default="yes">

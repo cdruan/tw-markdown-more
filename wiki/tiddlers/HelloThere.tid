@@ -25,7 +25,7 @@ Example:
 
 # Example Block
 
-Provide examples and optional comments:
+Write an indented example using `->` and optionally append a comment section with `//`:
 
 ```
 -> Bonjour // Good morning
@@ -95,6 +95,25 @@ Inner container
 :::
 ::::
 
+# WikiText Table
+
+Create tables using WikiText table syntax:
+
+```
+|Ice Cream Survey|c
+|Flavor      |Panel1|<|Panel2|<|h
+|!Mint       |  76|  29%|   23|   9%|
+|!Chocolate  | 102|  39%|  135|  51%|
+|!Vanilla    |  83|  32%|  106|  40%|
+```
+
+Output:
+
+|Ice Cream Survey|c
+|Flavor      |Panel1|<|Panel2|<|h
+|!Mint       |  76|  29%|   23|   9%|
+|!Chocolate  | 102|  39%|  135|  51%|
+|!Vanilla    |  83|  32%|  106|  40%|
 
 # Table of Contents
 

@@ -24,6 +24,7 @@ exports.startup = function() {
 	md.use(require("$:/plugins/cdr/markdown-more/markdown-it-checklist.js"))
 	  .use(require("$:/plugins/cdr/markdown-more/markdown-it-admonition"))
 	  .use(require("$:/plugins/cdr/markdown-more/markdown-it-example"))
+	  .use(require("$:/plugins/cdr/markdown-more/markdown-it-twtable"))
 	  ;
 }
 })();

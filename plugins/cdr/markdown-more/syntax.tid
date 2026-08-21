@@ -7,7 +7,9 @@ title: $:/plugins/cdr/markdown-more/syntax
 - [x] Task 2
 ```
 
-This plugin provides simple interactive checklists. Clicking on the checkboxes will alter the underlying Markdown text. To minimize unintended changes, transcluded checklists will be read-only. Care must also be taken when mixing <$text text="WikiText"/> and the markdown text. For example, if you enter the following:
+This plugin provides simple interactive checklists. Clicking on the checkboxes will alter the underlying Markdown text.
+To minimize unintended changes, transcluded checklists will be read-only. Care must also be taken when
+mixing <$text text="WikiText"/> and the markdown text. For example, if you enter the following:
 
 ```
 <$list filter="apple bat candle" variable="item">
@@ -17,12 +19,13 @@ This plugin provides simple interactive checklists. Clicking on the checkboxes w
 </$list>
 ```
 
-All of the rendered checkboxes in the above example will be linked to one toggle state. Clicking on any one of them will cause all of boxes to be updated.
+All of the rendered checkboxes in the example above will be linked to a single toggle state. Clicking on any one of them
+will cause all of boxes to be updated.
 
 !! Example Block
 
-Begin an example block with `->` followed by a space. You can provide an additional comment section; anything
-following the `//` symbol will be treated as comments.
+Begin an indented example block with `->` followed by a space. You can provide an additional comment section;
+anything following the `//` symbol will be treated as comments.
 
 ```
 Here is an example:
@@ -95,4 +98,103 @@ Available categories are:
 <div class="admonition see-also"><div class="admonition-title">SEE ALSO</div></div>
 </div>
 
+!! <$text text="WikiText"/> Table
 
+```
+<style>
+.wide-column {
+    width: 150px;
+}
+</style>
+
+|caption text       |c
+|my-table           |k
+||>|>|Spanned Header|h
+||Left|Center|Right|h
+||wide-column  |<|<|g
+|A|^top left    |^ top center    |^    top right|
+|B|~|~|~|
+|C|mid left     |   mid center   |     mid right|
+|D|~|~|~|
+|E|,bottom left |, bottom center |, bottom right|
+|F|~|~|~|
+|G|The footer appears at the bottom.        |<|<|f
+|H|~|f
+```
+
+Rendered output:
+
+<style>
+@scope (table.my-table) {
+    .wide-column {
+        width: 150px;
+    }
+}
+</style>
+<table class="my-table">
+<caption>caption text</caption>
+<colgroup></colgroup><colgroup span="3" class="wide-column"></colgroup><thead>
+<tr>
+<th></th>
+<th colspan="3">Spanned Header</th>
+</tr>
+<tr>
+<th></th>
+<th>Left</th>
+<th>Center</th>
+<th>Right</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td style="text-align:left;vertical-align:top;" rowspan="2">top left</td>
+<td style="text-align:center;vertical-align:top;" rowspan="2">top center</td>
+<td style="text-align:right;vertical-align:top;" rowspan="2">top right</td>
+</tr>
+<tr>
+<td>B</td>
+</tr>
+<tr>
+<td>C</td>
+<td style="text-align:left;" rowspan="2">mid left</td>
+<td style="text-align:center;" rowspan="2">mid center</td>
+<td style="text-align:right;" rowspan="2">mid right</td>
+</tr>
+<tr>
+<td>D</td>
+</tr>
+<tr>
+<td>E</td>
+<td style="text-align:left;vertical-align:bottom;" rowspan="2">bottom left</td>
+<td style="text-align:center;vertical-align:bottom;" rowspan="2">bottom center</td>
+<td style="text-align:right;vertical-align:bottom;" rowspan="2">bottom right</td>
+</tr>
+<tr>
+<td>F</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td>G</td>
+<td style="text-align:left;" colspan="3" rowspan="2">The footer appears at the bottom.</td>
+</tr>
+<tr>
+<td>H</td>
+</tr>
+</tfoot>
+</table>
+
+For more details, refer to [[TW5 Tables in WikiText|https://tiddlywiki.com/#Tables%20in%20WikiText]].
+
+!!! Column Groups
+
+Note that the pseudo-row type `g`, added by this extension, only works in Markdown tiddlers. It lets you define
+column groups. A table should contain at most one column group row. Subsequent definitions will be ignored.
+Here is an example:
+
+```
+|foo|<|bar baz|g
+```
+
+The definition above assigns CSS class "foo" to columns 1 and 2 and classes "bar" and "baz" to column 3.
