@@ -70,7 +70,9 @@ function escapedSplit(str) {
 
 	current = result[result.length - 1];
 
-	if(current.length > 1 || ! 'fhckg'.includes(current)) { return null; }
+	const validTypes = 'fhckgw';
+
+	if(current.length > 1 || ! validTypes.includes(current)) { return null; }
 
 	return result;
 }
@@ -123,13 +125,13 @@ function processColgroup(columns) {
 		/** @type { ColGrpCell } */
 		const cell = {
 			span: 1,
-			class: null
+			content: null
 		};
 
 		if(col === '<') {
 			pendingColSpan = 0;
 			for(let c = row.length - 1; c >= 0; c--) {
-				if(row[c] && row[c].class !== null) {
+				if(row[c] && row[c].content !== null) {
 					row[c].span++;
 					break;
 				}
@@ -137,7 +139,7 @@ function processColgroup(columns) {
 		} else if(col === '>') {
 			pendingColSpan++;
 		} else {
-			cell.class = col.trim();
+			cell.content = col.trim();
 
 			if(pendingColSpan > 0) {
 				cell.span += pendingColSpan;
@@ -173,7 +175,8 @@ function processColumns(ishead,columns,rows) {
 		};
 		let pos = 0;
 		let max = col.length;
-		let valign, align;
+		let valign;
+		let align;
 		let style = '';
 
 		if(col === '~') {
@@ -305,6 +308,7 @@ function processRow(state,lineno,columns,table) {
 			table.tblToken.attrJoin('class',columns.join(' ').trim());
 			break;
 		case 'g':
+		case 'w':
 			if(table.colgrpIdx > 0) {
 				const colgroup = processColgroup(columns);
 				if(colgroup.length > 0) {
@@ -312,18 +316,28 @@ function processRow(state,lineno,columns,table) {
 					for(let i=0; i < colgroup.length; i++) {
 						const c = colgroup[i];
 
-						if(c.class === null) {
+						if(c.content === null) {
 							continue;
 						}
 						const openToken = new state.Token('colgroup_open','colgroup',1);
 						const closeToken = new state.Token('colgroup_close','colgroup',-1);
 
 						if(c.span > 1) {
-							openToken.attrSet('span',colgroup[i].span);
+							openToken.attrSet('span',c.span);
 						}
-						if(c.class !== '') {
-							openToken.attrSet('class',c.class);
+						if(c.content !== '') {
+							switch (rowType) {
+								case "g":
+									openToken.attrSet('class',c.content);
+									break;
+								case "w":
+									openToken.attrSet('style',`width:${c.content}`);
+									break;
+								default:
+									break; // shouldn't be reached...
+							}
 						}
+
 						groups.push(openToken);
 						groups.push(closeToken);
 					}

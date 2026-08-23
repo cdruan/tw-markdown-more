@@ -189,12 +189,23 @@ For more details, refer to [[TW5 Tables in WikiText|https://tiddlywiki.com/#Tabl
 
 !!! Column Groups
 
-Note that the pseudo-row type `g`, added by this extension, only works in Markdown tiddlers. It lets you define
-column groups. A table should contain at most one column group row. Subsequent definitions will be ignored.
-Here is an example:
+You can define column groups by specifying either pseudo-row type `g` or type `w`. Note that both types are added
+by this extension and work only in Markdown tiddlers. These two types are mutually exclusive: `g` defines
+column group classes while `w` defines column group widths. A table can contain at most one column group definition
+row. Subsequent definition rows will be ignored.
+
+Example 1:
 
 ```
 |foo|<|bar baz|g
 ```
 
 The definition above assigns CSS class "foo" to columns 1 and 2 and classes "bar" and "baz" to column 3.
+
+Example 2:
+
+```
+||100px|<|w
+```
+
+The definition above sets the width of columns 2 and 3 to 100px each.
