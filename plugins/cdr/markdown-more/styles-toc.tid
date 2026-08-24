@@ -1,6 +1,8 @@
 title: $:/plugins/cdr/markdown-more/styles/table-of-contents
 tags: [[$:/tags/Stylesheet]]
 
+\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline html
+
 h1 img, h2 img, h3 img, h4 img, h5 img, h6 img, .toc-item img {
 	width: 1.2em;
 	height: 1.2em;
@@ -12,7 +14,6 @@ div.md-container {
 div.md-aside {
 	font-size: 0.9em;
 }
-
 /* LANDSCAPE */
 @media (min-width: {{$:/themes/tiddlywiki/vanilla/metrics/sidebarbreakpoint}}) {
 	div.md-container {
@@ -43,7 +44,6 @@ div.md-aside {
 		top: 10px;
 	}
 }
-
 <$reveal stateTitle="$:/config/markdown/toc/portrait" type="match" text="hide">
 @media (max-width: {{$:/themes/tiddlywiki/vanilla/metrics/sidebarbreakpoint}}) {
 	.md-aside {
@@ -51,7 +51,6 @@ div.md-aside {
 	}
 }
 </$reveal>
-
 /* PRINT */
 @media print {
 	div.md-aside {
