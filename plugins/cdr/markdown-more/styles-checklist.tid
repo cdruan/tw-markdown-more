@@ -1,0 +1,11 @@
+title: $:/plugins/cdr/markdown-more/styles/checklist
+tags: [[$:/tags/Stylesheet]]
+
+.markdown .checklist-item {
+	list-style-type: none;
+}
+.markdown .checklist-item-checkbox {
+	margin: 0 .3em .25em -1.2em;
+	vertical-align: middle;
+	cursor: pointer;
+}

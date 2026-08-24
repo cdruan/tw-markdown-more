@@ -1,0 +1,90 @@
+title: $:/plugins/cdr/markdown-more/styles/table-of-contents
+tags: [[$:/tags/Stylesheet]]
+
+h1 img, h2 img, h3 img, h4 img, h5 img, h6 img, .toc-item img {
+	width: 1.2em;
+	height: 1.2em;
+}
+div.md-container {
+	width: 100%;
+	display: block
+}
+div.md-aside {
+	font-size: 0.9em;
+}
+
+/* LANDSCAPE */
+@media (min-width: {{$:/themes/tiddlywiki/vanilla/metrics/sidebarbreakpoint}}) {
+	div.md-container {
+		display: flex;
+		flex-flow: row nowrap;
+	}
+	div.md-main {
+		flex-grow: 1;
+		flex-basis: 0;
+		flex-shrink: 1;
+		width: 78%;
+		order: 1;
+	}
+	div.md-aside {
+		flex-grow: 0;
+		flex-shrink: 1;
+		width: 22%;
+		order: 2;
+	}
+	.md-aside nav {
+		position: sticky;
+		top: {{{ [{$:/themes/tiddlywiki/vanilla/options/stickytitles}match[yes]then[110px]else[60px]] }}};
+		max-height: calc(100vh - {{{ [{$:/themes/tiddlywiki/vanilla/options/stickytitles}match[yes]then[110px]else[60px]] }}});
+		overflow-y: auto;
+		margin-left: 1em;
+	}
+	.tc-tiddler-preview .md-aside nav {
+		top: 10px;
+	}
+}
+
+<$reveal stateTitle="$:/config/markdown/toc/portrait" type="match" text="hide">
+@media (max-width: {{$:/themes/tiddlywiki/vanilla/metrics/sidebarbreakpoint}}) {
+	.md-aside {
+		display: none;
+	}
+}
+</$reveal>
+
+/* PRINT */
+@media print {
+	div.md-aside {
+		display: none;
+	}
+}
+.md-aside {
+	scrollbar-width: none;
+}
+.md-aside ::-webkit-scrollbar {
+	display: none;  /* Safari and Chrome */
+}
+/* TOC list style */
+.md-aside nav .toc-list {
+	list-style-type: none;
+	padding-left: 1.25em;
+}
+.md-aside nav > .toc-list {
+	padding-left: 0px;
+}
+.md-aside nav > .toc-list > li:first-child {
+	margin-top: 0;
+}
+.md-aside .toc-item {
+	line-height: 1.2;
+	margin-bottom: .75em;
+	margin-top: .75em;
+}
+.anchor-item:target {
+	animation: highlight 2s ease;
+	scroll-margin-top: {{{ [{$:/themes/tiddlywiki/vanilla/options/stickytitles}match[yes]then[120px]else[60px]] }}};
+}
+@keyframes highlight {
+	from { background: <<colour message-background>>; }
+	to { background: transparent; }
+}
