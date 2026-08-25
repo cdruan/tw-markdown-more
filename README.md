@@ -1,9 +1,11 @@
 # MarkdownMore
 
-This is a companion to the official TiddlyWiki Markdown plugin (&ge; 5.2.6). It features the following Markdown extensions:
+This is a companion to the official TiddlyWiki Markdown plugin (&ge; 5.2.6). It adds the following features:
 
 * checklist
 * admonition
-* tiddler-level table of contents based on Markdown headings
+* WikiText table syntax
+* example syntax &mdash; a quick way to show examples with comments as an indented block
+* tiddler-level table of contents
 
 For details, please visit the [demo page](https://cdruan.github.io/tw-markdown-more).
