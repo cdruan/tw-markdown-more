@@ -9,6 +9,7 @@ Adds admonition container:
 admonition body
 :::
 \*/
+
 (function(){
 
 /*jslint node: true, browser: true */
@@ -51,7 +52,8 @@ var AdmHeadingRegEx = /^\s*([a-zA-Z-]+[a-zA-Z])([-+]?)(?:\s*$|\s+(.*?)\s*$)/;
 function parseHeading(text) {
 	var m = text.match(AdmHeadingRegEx);
 	if(m) {
-		var cat = m[1].toLowerCase();
+		const cat = m[1].toLowerCase();
+		// biome-ignore lint/suspicious/noPrototypeBuiltins: safe, hasOwnProperty not shadowed
 		if(categories.hasOwnProperty(cat)) {
 			return {
 				category: cat,
@@ -65,8 +67,9 @@ function parseHeading(text) {
 
 // parse through source from startLine until endLine or markup string
 function reachBlockEnd(state,startLine,endLine,markup) {
-	var nextLine=startLine;
-	var pos, mem, max, haveEndMarker=false;
+	let nextLine=startLine;
+	// biome-ignore lint/style/useSingleVarDeclarator: compact layout
+	let pos, mem, max, haveEndMarker=false;
 
 	for(nextLine = startLine; nextLine < endLine; nextLine++) {
 		pos = mem = state.bMarks[nextLine] + state.tShift[nextLine];
@@ -108,9 +111,8 @@ function reachBlockEnd(state,startLine,endLine,markup) {
 
 module.exports = function admonitionPlugin(md,options) {
 	function admonitionRule(state,startLine,endLine,silent) {
-		var pos, params, token, markup,
-		start = state.bMarks[startLine] + state.tShift[startLine],
-		max = state.eMarks[startLine];
+		const start = state.bMarks[startLine] + state.tShift[startLine];
+		const max = state.eMarks[startLine];
 
 		if(start + 3 > max) { return false; }
 
@@ -119,12 +121,12 @@ module.exports = function admonitionPlugin(md,options) {
 		}
 
 		// scan marker length, must be >= 3
-		pos = state.skipChars(start,AdmMarkerCode);
+		const pos = state.skipChars(start,AdmMarkerCode);
 
 		if(pos - start < 3) { return false; }
 
-		markup = state.src.slice(start,pos);
-		params = state.src.slice(pos,max);
+		const markup = state.src.slice(start,pos);
+		const params = state.src.slice(pos,max);
 
 		// parse heading
 		var heading = parseHeading(params);
@@ -141,32 +143,35 @@ module.exports = function admonitionPlugin(md,options) {
 		var blockTag = heading.state ? 'details' : 'div';
 		var titleTag = heading.state ? 'summary' : 'div';
 
-		token = state.push('admonition_open',blockTag,1);
+		let token = state.push('admonition_open',blockTag,1);
 		token.markup = markup;
 		token.block  = true;
 		token.info   = heading.category;
 		token.map    = [ startLine, loop.endLine ];
-		token.attrJoin('class','admonition');
-		token.attrJoin('class',heading.category);
+		token.attrSet('class','admonition');
+		token.attrSet('data-admonition',heading.category);
 		if(heading.state === '+') {
 			token.attrSet('open','open');
 		}
 
-		// admonition title
-		token = state.push('admonition_title_open',titleTag,1);
-		token.markup = markup;
-		token.info   = heading.category;
-		token.map    = [ startLine, startLine + 1 ];
-		token.attrSet('class','admonition-title');
+		// shows title bar only if content is not ''
+		if(heading.state || heading.title !== "''") {
+			// admonition title
+			token = state.push('admonition_title_open',titleTag,1);
+			token.markup = markup;
+			token.info   = heading.category;
+			token.map    = [ startLine, startLine + 1 ];
+			token.attrSet('class','admonition-title');
 
-		token = state.push('inline','',0);
-		token.content  = heading.title;
-		token.map      = [ startLine, startLine + 1 ];
-		token.children = [];
+			token = state.push('inline','',0);
+			token.content  = (heading.title === "''" ? '' : heading.title);
+			token.map      = [ startLine, startLine + 1 ];
+			token.children = [];
 
-		token = state.push('admonition_title_close',titleTag,-1);
-		token.markup = markup;
-		token.info   = heading.category;
+			token = state.push('admonition_title_close',titleTag,-1);
+			token.markup = markup;
+			token.info   = heading.category;
+		}
 
 		token = state.push('admonition_body_open','div',1);
 		token.attrSet('class','admonition-body');

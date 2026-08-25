@@ -67,6 +67,14 @@ Collapsible content
 :::
 ```
 
+Or, to hide the title bar completely, set the custom title message to  `''`.
+
+```
+:::note ''
+No title bar
+:::
+```
+
 Available categories are:
 
 * note, info, todo
@@ -79,23 +87,23 @@ Available categories are:
 * see-also
 
 <div class="markdown">
-<div class="admonition note"><div class="admonition-title">NOTE</div></div>
-<div class="admonition info"><div class="admonition-title">INFO</div></div>
-<div class="admonition todo"><div class="admonition-title">TODO</div></div>
-<div class="admonition important"><div class="admonition-title">IMPORTANT</div></div>
-<div class="admonition tip"><div class="admonition-title">TIP</div></div>
-<div class="admonition success"><div class="admonition-title">SUCCESS</div></div>
-<div class="admonition question"><div class="admonition-title">QUESTION</div></div>
-<div class="admonition warning"><div class="admonition-title">WARNING / CAUTION</div></div>
-<div class="admonition fail"><div class="admonition-title">FAIL</div></div>
-<div class="admonition danger"><div class="admonition-title">DANGER</div></div>
-<div class="admonition error"><div class="admonition-title">ERROR</div></div>
-<div class="admonition bug"><div class="admonition-title">BUG</div></div>
-<div class="admonition example"><div class="admonition-title">EXAMPLE / SNIPPET</div></div>
-<div class="admonition abstract"><div class="admonition-title">ABSTRACT</div></div>
-<div class="admonition summary"><div class="admonition-title">SUMMARY</div></div>
-<div class="admonition quote"><div class="admonition-title">QUOTE / CITE</div></div>
-<div class="admonition see-also"><div class="admonition-title">SEE ALSO</div></div>
+<div class="admonition" data-admonition="note"><div class="admonition-title">NOTE</div></div>
+<div class="admonition" data-admonition="info"><div class="admonition-title">INFO</div></div>
+<div class="admonition" data-admonition="todo"><div class="admonition-title">TODO</div></div>
+<div class="admonition" data-admonition="important"><div class="admonition-title">IMPORTANT</div></div>
+<div class="admonition" data-admonition="tip"><div class="admonition-title">TIP</div></div>
+<div class="admonition" data-admonition="success"><div class="admonition-title">SUCCESS</div></div>
+<div class="admonition" data-admonition="question"><div class="admonition-title">QUESTION</div></div>
+<div class="admonition" data-admonition="warning"><div class="admonition-title">WARNING / CAUTION</div></div>
+<div class="admonition" data-admonition="fail"><div class="admonition-title">FAIL</div></div>
+<div class="admonition" data-admonition="danger"><div class="admonition-title">DANGER</div></div>
+<div class="admonition" data-admonition="error"><div class="admonition-title">ERROR</div></div>
+<div class="admonition" data-admonition="bug"><div class="admonition-title">BUG</div></div>
+<div class="admonition" data-admonition="example"><div class="admonition-title">EXAMPLE / SNIPPET</div></div>
+<div class="admonition" data-admonition="abstract"><div class="admonition-title">ABSTRACT</div></div>
+<div class="admonition" data-admonition="summary"><div class="admonition-title">SUMMARY</div></div>
+<div class="admonition" data-admonition="quote"><div class="admonition-title">QUOTE / CITE</div></div>
+<div class="admonition" data-admonition="see-also"><div class="admonition-title">SEE ALSO</div></div>
 </div>
 
 !! <$text text="WikiText"/> Table

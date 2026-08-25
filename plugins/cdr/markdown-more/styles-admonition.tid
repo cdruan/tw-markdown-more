@@ -3,124 +3,22 @@ tags: [[$:/tags/Stylesheet]]
 
 \rules only filteredtranscludeinline transcludeinline macrodef macrocallinline html
 
-\define styleAdmonition(category: "note", color: "note", symbol: "e85d")
+\define styleAdmonition(category: "note", base: "note")
 \rules except dash
-.admonition.$category$ {
-	border-left: 3px solid hsl(var(--color-admonition-$color$));
-}
-.admonition.$category$ > .admonition-title {
-	background-color: hsl(var(--color-admonition-$color$-bg));
-	color: hsl(var(--color-admonition-$color$-tx));
-}
-.admonition.$category$ > .admonition-title:before {
-	color: hsl(var(--color-admonition-$color$));
-	content: "\$symbol$";
-}
-details.admonition.$category$ > .admonition-title:after {
-	background-color: hsl(var(--color-admonition-$color$));
+.admonition[data-admonition="$category$"] {
+	--admonition-color: var(--admonition-color-$base$);
+	--admonition-title-bg: var(--admonition-title-bg-$base$);
+	--admonition-title-color: var(--admonition-title-color-$base$);
+	--admonition-icon-color: var(--admonition-color-$base$);
+	--admonition-icon: var(--admonition-icon-$category$);
 }
 \end
-
-\define styleAdmonitionCompact(category: "note", color: "note")
-\rules except dash
-.admonition.$category$ {
-	background-color: hsl(var(--color-admonition-$color$-bg));
-	border: 1px solid hsl(var(--color-admonition-$color$));
-	color: hsl(var(--color-admonition-$color$-tx));
-}
-.admonition.$category$ a.tc-tiddlylink-external, .admonition.$category$ a.tc-tiddlylink-external:visited,
-.admonition.$category$ a.tc-tiddlylink, .admonition.$category$ a.tc-tiddlylink:visited {
-	color: hsl(var(--color-admonition-$color$-tx));
-	text-decoration-line: underline;
-	text-underline-offset: 2px;
-}
-.admonition.$category$ :not(pre) > code {
-	background-color: hsla(var(--color-admonition-$color$-bg));
-	background-color: rgba(0,0,0,.03);
-	color: hsl(var(--color-admonition-$color$-tx));
-	border: .5px solid hsla(var(--color-admonition-$color$), .5);
-	border-radius: 3px;
-	margin: 0 2px;
-}
-\end
-
 @font-face {
 	font-family: 'Material Icons';
 	font-weight: normal;
 	font-style: normal;
 	src: local("Material Icons"),  local("MaterialIcons-Regular"), url(data:font/woff2;base64,d09GMgABAAAAAAWgAA8AAAAAC3wAAAVKAAEEWgAAAAAAAAAAAAAAAAAAAAAAAAAAGhYbEBwaBmAAgUwIBBEICo0MiW4BNgIkAy4LLgAEIAWCegcgG6cIo6KEUQIA/plgE5n6ghXD6FIH3i2DlCyKBSxseTL87nyxmQANgU8vBB9w795da03NsrjwUwRTMcIosbgj3PTqdA41S5nmviYCqbiPTD3MxGDqwJRO1Hiedr5+OUbYjXgAGPh49w/X9K5Vu/t3Q+EKar7gpiYDI35jE5vYloV5ELYgDOE21/85lnqdlEUHfnaisQ3w3/W/TFpRZOHhEc46vUGaZ8O9CYz2HLWDM7C2Fb+XeC0E0gDARIp2GZI5cjZObM8qUxrnvbkWeMTp4aCXDrSxFICTrf4xM7bHIhNwlGf9upofTwTYxpd2+kgSQ4hligqE2t7/kSWKtuTVfPDh4X4U/CjsUdLj509Mnp57Fv5sxwv3Fzkvyl+0vpjwYvqL6x/7fzzRgno7bmEb+WdUtN5ndcLqmNVeS8rio3mQ2SmzYpObJttN1posMJlkMsYkaKBu9gwaxtTCCANAbcPCKhi7BhyAPko8Jxuwx4aYRJmjivhlPBIDUIdJGIY6VEz2CxPivWKxfHhQzIY7HB+paJ68qXBVp/ZRA3muNxadZJ4jHI1q+EQCiQTi8f7fb8HcgmkQuRbiDO098udykZAFJUpalaV+DCEADOFNTz36xMQutf82dTvpUxMyCBp9Ir80C/o1+7EdYVjwtnA0Q2Ygt7JrKD2ykHeH9O+HZuBGduvXduUWZu+3crNxO7X/VLokVEGKopZ/GTRjgn3kHBmb/XFUl4Q//RSEe1HgUsxna3EU63oPcmHUt1dv7N81TNO3ra4tcT+LJq5OqLcGagK2hGBON4snblYi5BbiJUR7ccV+uVautv1ZvVhJrrQuClWOMuwjC7zL5tNCDG53WSBBD4HdhGLB430ZCAFKIIyQfRvRtohcA4ZpMoOJY0JgKBJkRJemUeBiiEk49BnmbXoX5ENByFoTETAM9KZQEf80Op0PMFQwyNAigkQZ+IqTh8AxRTfDBMT+c9Y/dGJw7PXvhJrI34g18sMKKsC1znXUhg1wHEHCIhMlrW1u5sLZRyAwt7W01XlBjdMbkKPFQayAb/Y1IsD1obLSrje9146hGYtSj1ILhq6Q4EbUcPSTTP5Y4BQq8QZG+l8eBE8D3cRSZjA2/Z25xYWlkjSLSLgDTjNU7owT66iNrtWB27u7aSwoZAwwZUMmjJ+cOAQUnEzWu2JFbKyalgkmCpCbBk7GX8DHNI3zklAZSFREKUIVSsVkLmlCwSHBYawl6bvkzjIKv+P3QsD/RBGxCBlUbkB7K54RIcRIz8qe+PVbebOyX4XEyXoE3p2h34t6ofrtI+tHb9VC9hbI1jx8pP7f1tZLEDTQ1XIwP4I/GPkLhPjdiwsn2/ZF28mmMxExpKLJrxgGEiT0RhbZkN43EXEMMpsIQ1h9C+VGVCGIAquMeRf0IXGBt7N/y3mVwFLOByKRhomkLAG+3BI4GR7PJfkiBKQrVUQllrDIgqJSTuQsbp8riYlVX8zIeNsuzIqJcaIgnl9AK3gK3XvMG+j34+kbgM/qFZ4A8B1mCf//9Q94AnFeGUB0BQPUQcRYBQqMVEl05zIhjXQQSghCjVg0ArawStBUDVAdFKaProKm9MhhbExAi1bCl16BQdryDZZ1M4RcTF4drjNENN37LFFL34SqU69DowplyjWjuHDizAslUp06ZaqVsEOJVquIA0qwatUoKWujTREssUGXG7UyFld3xCvQHK1WKFjVN1qROrXkpXKZloyuQKOIaLMNWC1Tsht0YCHFZ7FPC1QNdWfPlX0PVW/MCmxibyVA1PmJdZ150mxaz35nWS3C2X8MFwAA);
 }
-
-/*** Admonition ***/
-
-:root {
-	/* HSL color tuples */
-	--color-admonition-note: 202, 100%, 49%;
-	--color-admonition-important: 330, 75%, 61%;
-	--color-admonition-success: 95, 70%, 47%;
-	--color-admonition-warning: 34, 100%, 50%;
-	--color-admonition-danger: 6, 86%, 57%;
-	--color-admonition-example: 265, 100%, 67%;
-	--color-admonition-quote: 0, 0%, 56%;
-	--color-admonition-see-also: 134, 55%, 47%;
-}
-
-<$reveal stateTitle={{$:/palette}} stateField="color-scheme" type="nomatch" text="dark">
-:root {
-	--color-admonition-note-bg: 202, 100%, 93%;
-	--color-admonition-important-bg: 330, 75%, 95%;
-	--color-admonition-success-bg: 95, 71%, 90%;
-	--color-admonition-warning-bg: 34, 100%, 92%;
-	--color-admonition-danger-bg: 6, 86%, 95%;
-	--color-admonition-example-bg: 265, 100%, 96%;
-	--color-admonition-quote-bg: 0, 0%, 93%;
-	--color-admonition-see-also-bg: 134, 55%, 93%;
-
-	--color-admonition-note-tx: 202, 100%, 20%;
-	--color-admonition-important-tx: 330, 75%, 31%;
-	--color-admonition-success-tx: 95, 70%, 19%;
-	--color-admonition-warning-tx: 34, 100%, 21%;
-	--color-admonition-danger-tx: 6, 86%, 30%;
-	--color-admonition-example-tx: 265, 100%, 40.5%;
-	--color-admonition-quote-tx: 0, 0%, 25.5%;
-	--color-admonition-see-also-tx: 134, 55%, 21%;
-}
-.admonition {
-	background-color: rgba(255,255,255,0.05);
-}
-</$reveal>
-
-<$reveal stateTitle={{$:/palette}} stateField="color-scheme" type="match" text="dark">
-:root {
-	--color-admonition-note-bg: 202, 100%, 15%;
-	--color-admonition-important-bg: 330, 75%, 17%;
-	--color-admonition-success-bg: 95, 70%, 14%;
-	--color-admonition-warning-bg: 34, 100%, 16%;
-	--color-admonition-danger-bg: 6, 86%, 16%;
-	--color-admonition-example-bg: 265, 100%, 17%;
-	--color-admonition-quote-bg: 0, 0%, 19.5%;
-	--color-admonition-see-also-bg: 134, 55%, 14%;
-
-	--color-admonition-note-tx: 202, 100%, 61%;
-	--color-admonition-important-tx: 330, 75%, 68%;
-	--color-admonition-success-tx: 95, 70%, 44%;
-	--color-admonition-warning-tx: 34, 100%, 52%;
-	--color-admonition-danger-tx: 6, 86%, 68%;
-	--color-admonition-example-tx: 265, 100%, 76%;
-	--color-admonition-quote-tx: 0, 0%, 67%;
-	--color-admonition-see-also-tx: 134, 55%, 46%;
-}
-.admonition {
-	background-color: rgba(255,255,255,0.06);
-	border: 1px solid rgba(255,255,255,0.07);
-}
-@media print {
-	.admonition {
-		border: 1px solid <<colour pre-border>>;
-	}
-}
-</$reveal>
-
 <$reveal stateTitle={{$:/palette}} stateField="color-scheme" type="nomatch" text="dark">
 @media print {
 	.admonition {
@@ -128,7 +26,7 @@ details.admonition.$category$ > .admonition-title:after {
 		print-color-adjust: exact;
 		-webkit-print-color-adjust: exact;
 	}
-	.admonition > .admonition-title {
+	.admonition-title {
 		print-color-adjust: exact;
 		-webkit-print-color-adjust: exact;
 	}
@@ -139,36 +37,34 @@ details.admonition.$category$ > .admonition-title:after {
 	}
 }
 </$reveal>
-
 .admonition {
 	margin: 1.5em 0;
 	padding: 0px;
 	overflow:auto;
 	page-break-inside:avoid;
 	border-radius: 3px;
-	border-left: 3px solid hsl(var(--color-admonition-note));
+	border-left: 3px solid hsl(var(--admonition-color));
 }
-.admonition >.admonition-title {
+.admonition-title {
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
 	padding: 7px 8px;
-	background-color: hsl(var(--color-admonition-note));
+	background-color: hsl(var(--admonition-title-bg));
+	color: hsl(var(--admonition-title-color));
 	font-weight: 600;
 	font-size: .92em;
 	line-height: 1;
 }
-.admonition >.admonition-title:before {
+.admonition-title:before {
 	margin-right: .4em;
-	font-size: 1.25em;
-	color: rgba(68, 138, 255, .8);
-	content: "\e88e";
-}
-.admonition >.admonition-title:before {
-	font-family: Material Icons;
+	color: hsl(var(--admonition-color));
+	content: var(--admonition-icon);
+	font-family: "Material Icons";
 	font-style: normal;
 	font-variant: normal;
 	font-weight: 400;
+	font-size: 1.25em;
 	text-transform: none;
 	white-space: nowrap;
 	word-wrap: normal;
@@ -176,7 +72,7 @@ details.admonition.$category$ > .admonition-title:after {
 }
 details.admonition > .admonition-title:after {
 	content: "";
-	background-color: hsl(var(--color-admonition-note));
+	background-color: hsl(var(--admonition-color));
 	margin-left: auto;
 	mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='48' width='48'%3E%3Cpath d='m18.75 36-2.15-2.15 9.9-9.9-9.9-9.9 2.15-2.15L30.8 23.95Z'/%3E%3C/svg%3E");
 	mask-position: center;
@@ -194,104 +90,148 @@ details.admonition > .admonition-title:after {
 details[open].admonition > .admonition-title:after {
 	transform: rotate(90deg);
 }
-.admonition > .admonition-body {
+.admonition-body {
 	font-size: .98em;
 	margin: 8px 10px;
-}
-.admonition p {
 	line-height: 1.35;
 }
+:root {
+	/* HSL color tuples */
+	--admonition-color-note: 202, 100%, 49%;
+	--admonition-color-important: 330, 75%, 61%;
+	--admonition-color-success: 95, 70%, 47%;
+	--admonition-color-warning: 34, 100%, 50%;
+	--admonition-color-danger: 6, 86%, 57%;
+	--admonition-color-example: 265, 100%, 67%;
+	--admonition-color-quote: 0, 0%, 56%;
+	--admonition-color-see-also: 134, 55%, 47%;
+}
+<$reveal stateTitle={{$:/palette}} stateField="color-scheme" type="nomatch" text="dark">
+:root {
+	--admonition-title-bg-note: 202, 100%, 93%;
+	--admonition-title-bg-important: 330, 75%, 95%;
+	--admonition-title-bg-success: 95, 71%, 90%;
+	--admonition-title-bg-warning: 34, 100%, 92%;
+	--admonition-title-bg-danger: 6, 86%, 95%;
+	--admonition-title-bg-example: 265, 100%, 96%;
+	--admonition-title-bg-quote: 0, 0%, 93%;
+	--admonition-title-bg-see-also: 134, 55%, 93%;
 
-<<styleAdmonition note note e85d>>
+	--admonition-title-color-note: 202, 100%, 20%;
+	--admonition-title-color-important: 330, 75%, 31%;
+	--admonition-title-color-success: 95, 70%, 19%;
+	--admonition-title-color-warning: 34, 100%, 21%;
+	--admonition-title-color-danger: 6, 86%, 30%;
+	--admonition-title-color-example: 265, 100%, 40.5%;
+	--admonition-title-color-quote: 0, 0%, 25.5%;
+	--admonition-title-color-see-also: 134, 55%, 21%;
+}
+.admonition {
+	background-color: rgba(255,255,255,0.05);
+}
+</$reveal>
+<$reveal stateTitle={{$:/palette}} stateField="color-scheme" type="match" text="dark">
+:root {
+	--admonition-title-bg-note: 202, 100%, 15%;
+	--admonition-title-bg-important: 330, 75%, 17%;
+	--admonition-title-bg-success: 95, 70%, 14%;
+	--admonition-title-bg-warning: 34, 100%, 16%;
+	--admonition-title-bg-danger: 6, 86%, 16%;
+	--admonition-title-bg-example: 265, 100%, 17%;
+	--admonition-title-bg-quote: 0, 0%, 19.5%;
+	--admonition-title-bg-see-also: 134, 55%, 14%;
 
-<<styleAdmonition info note e88e>>
-
-<<styleAdmonition todo note e834>>
-
-<<styleAdmonition see-also see-also e250>>
-
-<<styleAdmonition important important e645>>
-
-<<styleAdmonition success success e876>>
-
-<<styleAdmonition tip success e0f0>>
-
-<<styleAdmonition question success e887>>
-
-<<styleAdmonition warning warning e002>>
-
-<<styleAdmonition caution warning e002>>
-
-<<styleAdmonition danger danger e3e7>>
-
-<<styleAdmonition fail danger e14c>>
-
-<<styleAdmonition error danger e5c9>>
-
-<<styleAdmonition bug danger e868>>
-
-<<styleAdmonition example example f1c3>>
-
-<<styleAdmonition snippet example f1c3>>
-
-<<styleAdmonition summary example e241>>
-
-<<styleAdmonition abstract example e8d2>>
-
-<<styleAdmonition quote quote e244>>
-
-<<styleAdmonition cite quote e244>>
-
+	--admonition-title-color-note: 202, 100%, 61%;
+	--admonition-title-color-important: 330, 75%, 68%;
+	--admonition-title-color-success: 95, 70%, 44%;
+	--admonition-title-color-warning: 34, 100%, 52%;
+	--admonition-title-color-danger: 6, 86%, 68%;
+	--admonition-title-color-example: 265, 100%, 76%;
+	--admonition-title-color-quote: 0, 0%, 67%;
+	--admonition-title-color-see-also: 134, 55%, 46%;
+}
+.admonition {
+	background-color: rgba(255,255,255,0.06);
+	border: 1px solid rgba(255,255,255,0.07);
+}
+@media print {
+	.admonition {
+		border: 1px solid <<colour pre-border>>;
+	}
+}
+</$reveal>
+/* -- pastel style -- */
 <$reveal stateTitle="$:/config/markdown/admonition/style" type="match" text="pastel" default="classic">
-.admonition > .admonition-title {
-	background-color: rgba(0,0,0,0) !important;
+.admonition {
+	border: 1px solid hsl(var(--admonition-color), .5);
+	background-color: hsl(var(--admonition-title-bg));
+	color: hsl(var(--admonition-title-color));
+}
+.admonition-title {
 	padding-top: .5em;
 	padding-bottom: 0px;
 	margin-bottom: .5em;
 	font-size: .9em;
 	border: none;
 }
-.admonition > .admonition-body {
+.admonition-body {
 	font-size: .96em;
 }
-
-<<styleAdmonitionCompact "note" "note">>
-
-<<styleAdmonitionCompact info note>>
-
-<<styleAdmonitionCompact todo note>>
-
-<<styleAdmonitionCompact see-also see-also>>
-
-<<styleAdmonitionCompact important important>>
-
-<<styleAdmonitionCompact success success>>
-
-<<styleAdmonitionCompact tip success>>
-
-<<styleAdmonitionCompact question success>>
-
-<<styleAdmonitionCompact warning warning>>
-
-<<styleAdmonitionCompact caution warning>>
-
-<<styleAdmonitionCompact danger danger>>
-
-<<styleAdmonitionCompact fail danger>>
-
-<<styleAdmonitionCompact error danger>>
-
-<<styleAdmonitionCompact bug danger>>
-
-<<styleAdmonitionCompact example example>>
-
-<<styleAdmonitionCompact snippet example>>
-
-<<styleAdmonitionCompact summary example>>
-
-<<styleAdmonitionCompact abstract example>>
-
-<<styleAdmonitionCompact quote quote>>
-
-<<styleAdmonitionCompact cite quote>>
+.admonition .tc-tiddlylink-external,
+.admonition .tc-tiddlylink-external:visited,
+.admonition .tc-tiddlylink,
+.admonition .tc-tiddlylink:visited {
+	color: hsl(var(--admonition-title-color));
+	text-decoration-line: underline;
+	text-underline-offset: 2px;
+}
+.admonition :not(pre) > code {
+	background-color: rgba(0,0,0,.03);
+	color: hsl(var(--admonition-title-color));
+	border: .5px solid hsla(var(--admonition-color), .5);
+	border-radius: 3px;
+	margin: 0 2px;
+}
 </$reveal>
+<<styleAdmonition note note>>
+<<styleAdmonition info note>>
+<<styleAdmonition todo note>>
+<<styleAdmonition see-also see-also>>
+<<styleAdmonition important important>>
+<<styleAdmonition success success>>
+<<styleAdmonition tip success>>
+<<styleAdmonition question success>>
+<<styleAdmonition warning warning>>
+<<styleAdmonition caution warning>>
+<<styleAdmonition danger danger>>
+<<styleAdmonition fail danger>>
+<<styleAdmonition error danger>>
+<<styleAdmonition bug danger>>
+<<styleAdmonition example example>>
+<<styleAdmonition snippet example>>
+<<styleAdmonition summary example>>
+<<styleAdmonition abstract example>>
+<<styleAdmonition quote quote>>
+<<styleAdmonition cite quote>>
+:root {
+	--admonition-icon-note: "\e85d";
+	--admonition-icon-info: "\e88e";
+	--admonition-icon-todo: "\e834";
+	--admonition-icon-see-also: "\e250";
+	--admonition-icon-important: "\e645";
+	--admonition-icon-success: "\e876";
+	--admonition-icon-tip: "\e0f0";
+	--admonition-icon-question: "\e887";
+	--admonition-icon-warning: "\e002";
+	--admonition-icon-caution: "\e002";
+	--admonition-icon-danger: "\e3e7";
+	--admonition-icon-fail: "\e14c";
+	--admonition-icon-error: "\e5c9";
+	--admonition-icon-bug: "\e868";
+	--admonition-icon-example: "\f1c3";
+	--admonition-icon-snippet: "\f1c3";
+	--admonition-icon-summary: "\e241";
+	--admonition-icon-abstract: "\e8d2";
+	--admonition-icon-quote: "\e244";
+	--admonition-icon-cite: "\e244";
+}
